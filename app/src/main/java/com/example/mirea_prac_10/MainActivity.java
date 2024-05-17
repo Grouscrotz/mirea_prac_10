@@ -1,5 +1,6 @@
 package com.example.mirea_prac_10;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -89,6 +90,11 @@ public class MainActivity extends AppCompatActivity {
 
         editText.setText(null);
 
+    }
+
+    public void newActivity(View view) {
+        Intent intent = new Intent(MainActivity.this,MainActivity2.class);
+        startActivity(intent);
     }
 
 
