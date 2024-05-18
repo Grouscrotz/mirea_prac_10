@@ -52,7 +52,23 @@ public class MyDbManager {
         cv.put(MyConstans.TITLE,title);
         cv.put(MyConstans.DISC,disc);
         db.update(MyConstans.TABLE_NAME,cv,"title" + " = ?", new String[] {"ПОГОДА"});
+
     }
+
+    public String findInBd(String disc) {
+        String temp_phone  = new String();
+
+        Cursor cursor = db.query(MyConstans.TABLE_NAME,new String[] {MyConstans._ID,MyConstans.TITLE,MyConstans.DISC},
+                MyConstans.DISC + " = ?", new String[] {disc},null,null,null);
+        while (cursor.moveToNext()) {
+            temp_phone = cursor.getString(cursor.getColumnIndexOrThrow(MyConstans.TITLE));
+
+        }
+        cursor.close();
+        return temp_phone;
+    }
+
+
 
 
 
