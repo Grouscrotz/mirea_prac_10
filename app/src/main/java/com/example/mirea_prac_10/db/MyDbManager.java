@@ -30,28 +30,33 @@ public class MyDbManager {
     }
 
     public List<String> getFromDb() {
+        openDb();
         List<String> tempList = new ArrayList<>();
         Cursor cursor = db.query(MyConstans.TABLE_NAME,null,null,
                 null,null,null,null);
 
         while (cursor.moveToNext()) {
             String title = cursor.getString(cursor.getColumnIndexOrThrow(MyConstans.TITLE));
-            tempList.add(title);
+            String disc = cursor.getString(cursor.getColumnIndexOrThrow(MyConstans.DISC));
+            String split =   title + "      " + disc;
+            tempList.add(split);
         }
         cursor.close();
         return tempList;
     }
 
-    public void deleteFromDb() {
-        db.delete(MyConstans.TABLE_NAME,"title" + " = ?",new String[] {"ПОГОДА"});
-        db.close();
+    public void deleteFromDb(String title, String disc) {
+        myDbHelper.onOpen(db);
+        db.delete(MyConstans.TABLE_NAME,"title" + " = ?",new String[] {title});
+
     }
 
     public void updateDb(String title, String disc) {
         ContentValues cv = new ContentValues();
         cv.put(MyConstans.TITLE,title);
         cv.put(MyConstans.DISC,disc);
-        db.update(MyConstans.TABLE_NAME,cv,"title" + " = ?", new String[] {"ПОГОДА"});
+        db.update(MyConstans.TABLE_NAME,cv,"title" + " = ?", new String[] {title});
+        db.update(MyConstans.TABLE_NAME,cv,"disc" + " = ?", new String[] {disc});
 
     }
 

@@ -3,7 +3,10 @@ package com.example.mirea_prac_10;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -14,10 +17,14 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.mirea_prac_10.db.MyDbManager;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity2 extends AppCompatActivity {
     private MyDbManager myDbManager;
     EditText inputName;
     EditText inputPhone;
+    TextView textView;
 
 
     @Override
@@ -43,13 +50,19 @@ public class MainActivity2 extends AppCompatActivity {
     }
 
     public void delete(View view) {
+        String name = inputName.getText().toString();
+        String phone = inputPhone.getText().toString();
+
         myDbManager.openDb();
-        myDbManager.deleteFromDb();
+        myDbManager.deleteFromDb(name,phone);
     }
 
+
     public void upgrade(View view) {
+        String name = inputName.getText().toString();
+        String phone = inputPhone.getText().toString();
         myDbManager.openDb();
-        myDbManager.updateDb("ИЗМЕНЕНО","ТЕКСТ ДЛЯ ИЗМЕНЕНО");
+        myDbManager.updateDb(name,phone);
     }
 
     public void add(View view) {
@@ -60,11 +73,25 @@ public class MainActivity2 extends AppCompatActivity {
     }
 
     public void find(View view) {
+        textView = findViewById(R.id.textView2);
         String phone = inputPhone.getText().toString();
         myDbManager.openDb();
         String find_number = myDbManager.findInBd(phone);
+        Log.d("RRR",find_number);
+        textView.setText(find_number);
 
     }
+
+    public void showAll(View view) {
+        List<String> all_list = new ArrayList<>();
+        all_list = myDbManager.getFromDb();
+        ListView listView = findViewById(R.id.listView);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,all_list);
+        listView.setAdapter(adapter);
+
+    }
+
+
 
 
 
