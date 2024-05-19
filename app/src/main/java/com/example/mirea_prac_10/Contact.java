@@ -1,9 +1,15 @@
 package com.example.mirea_prac_10;
 
 public class Contact {
-    private int id; //идентификатор
-    private String name;//имя
-    private String phone;//номер телефона
+    public int id; //идентификатор
+    public String name;//имя
+    public String phone;//номер телефона
+
+    public Contact() {
+        this.id = 0;
+        this.name = "";
+        this.phone = "";
+    }
 
     public Contact(int id, String name, String phone) {
         this.id = id;

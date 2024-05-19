@@ -13,6 +13,15 @@
         android:theme="@style/Theme.Mirea_prac_10"
         tools:targetApi="31">
         <activity
+            android:name=".GSON_Activity"
+            android:exported="false" />
+
+        <provider
+            android:name=".ContactProvider"
+            android:authorities="com.example.mirea_prac_10.provider"
+            android:exported="true" />
+
+        <activity
             android:name=".MainActivity2"
             android:exported="false" />
         <activity

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MyDbManager {
-    private Context context;
+    public Context context;
     private DatabaseHelper myDbHelper;
     private SQLiteDatabase db;
 

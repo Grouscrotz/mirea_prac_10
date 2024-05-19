@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.mirea_prac_10"
-        minSdk = 24
+        minSdk = 21
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -29,7 +29,7 @@ android {
 }
 
 dependencies {
-
+    implementation("com.google.code.gson:gson:2.8.9")
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
